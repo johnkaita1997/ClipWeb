@@ -1,0 +1,91 @@
+{% extends 'adminmenu.html' %}
+{% load static %}
+{% block body %}
+
+    {% if message %}
+        <script>
+            alert('{{message}}')
+        </script>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <script>
+                    alert('{{message}}')
+                </script>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <br>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 style="font-size: 23px" class="h3 mb-0 text-gray-800">Kaita Clipboard History </h1>
+            <a href="" style="background-color: orange" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class=""></i> Logout</a>
+        </div>
+
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">History</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Url</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Url</th>
+                            <th>Actions</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+
+                        {% for entry in summary.entries %}
+                            <tr>
+                                <td>{{ entry.date_created }}</td>
+                                <td>{{ entry.title }}</td>
+                                <td>{{ entry.description }}</td>
+                                <td>{{ entry.url }}</td>
+                                <td style="width: 13.33%">
+                                    <div class="d-flex justify-content-center">
+                                        <a target="_blank" rel="noopener noreferrer" href="{{ entry.url }}"
+                                           class="btn btn-primary btn-sm mr-2">
+                                            <i class=""></i> Open
+                                        </a>
+                                        <a style="background-color: orange" href="{% url 'deleteentry' entry.id %}"
+                                           class="btn btn-danger btn-sm">
+                                            <i class=""></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
