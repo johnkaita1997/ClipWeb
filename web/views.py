@@ -1,5 +1,6 @@
 import webbrowser
 
+import clipboard
 import pyperclip
 from django.contrib import messages
 from django.http import JsonResponse
@@ -34,7 +35,7 @@ def openentry(request, url):
 
 def copy(request, text):
     try:
-        pyperclip.copy(text)  # Copy text to clipboard using pyperclip
+        clipboard.copy(text)  # Copy text to clipboard using the clipboard library
         message = 'Text copied successfully!'
         success = True
     except Exception as e:
