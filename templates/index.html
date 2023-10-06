@@ -24,7 +24,8 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 style="font-size: 23px" class="h3 mb-0 text-gray-800">Kaita Clipboard History </h1>
-            <a href="" style="background-color: orange" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class=""></i> Logout</a>
+            <a href="" style="background-color: orange"
+               class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class=""></i> Logout</a>
         </div>
 
 
@@ -59,9 +60,21 @@
                         {% for entry in summary.entries %}
                             <tr>
                                 <td>{{ entry.date_created }}</td>
-                                <td>{{ entry.title }}</td>
-                                <td>{{ entry.description }}</td>
-                                <td>{{ entry.url }}</td>
+                                <td class="copyable-title">
+                                    <a href="{% url 'copy' entry.title  %}">Copy</a>
+                                    <br>
+                                    {{ entry.title }}
+                                </td>
+                                <td class="copyable-description">
+                                    <a href="{% url 'copy' entry.description  %}">Copy</a>
+                                    <br>
+                                    {{ entry.description }}
+                                </td>
+                                <td class="copyable-url">
+                                    <a href="{% url 'copy'  entry.url  %}">Copy URL</a>
+                                    <br>
+                                    {{ entry.url }}
+                                </td>
                                 <td style="width: 13.33%">
                                     <div class="d-flex justify-content-center">
                                         <a target="_blank" rel="noopener noreferrer" href="{{ entry.url }}"
@@ -74,7 +87,6 @@
                                         </a>
                                     </div>
                                 </td>
-
                             </tr>
                         {% endfor %}
 

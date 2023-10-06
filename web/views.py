@@ -1,6 +1,8 @@
 import webbrowser
 
+import pyperclip
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from web.models import Entries
 
@@ -28,3 +30,19 @@ def openentry(request, url):
     except Exception as exception:
         messages.success(request, f"Error! {exception}")
         return redirect('homepage')
+
+
+def copy(request, text):
+    try:
+        pyperclip.copy(text)  # Copy text to clipboard using pyperclip
+        message = 'Text copied successfully!'
+        success = True
+    except Exception as e:
+        message = str(e)
+        success = False
+
+    response_data = {
+        'message': message,
+        'success': success
+    }
+    return JsonResponse(response_data)
