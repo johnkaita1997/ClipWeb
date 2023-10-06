@@ -60,7 +60,7 @@
                         {% for entry in summary.entries %}
                             <tr>
                                 <td>{{ entry.date_created }}</td>
-                                <td class="copyable-title" style="vertical-align: bottom;">
+                                <td class="copyable-title">
                                     {{ entry.title }}
                                     <br>
                                     <a href="#" style="text-decoration: none;"
@@ -71,7 +71,7 @@
                                     <br>
                                     <a style="text-decoration: none;" href="#" onclick="copyToClipboard('{{ entry.description }}')">Copy</a>
                                 </td>
-                                <td class="copyable-url">
+                                <td style="max-width: 180px; overflow: hidden;" class="copyable-url">
                                     {{ entry.url }}
                                     <br>
                                     <a style="text-decoration: none;" href="#" onclick="copyToClipboard('{{ entry.url }}')">Copy URL</a>
